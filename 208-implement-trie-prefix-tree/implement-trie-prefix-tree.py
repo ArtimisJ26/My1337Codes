@@ -24,9 +24,7 @@ class Trie:
             if letter not in curr.children:
                 return False
             curr = curr.children[letter]
-        if curr.isWord == True:
-            return True
-        return False
+        return curr.isWord
 
     def startsWith(self, prefix: str) -> bool:
         curr = self.root
