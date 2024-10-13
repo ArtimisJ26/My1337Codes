@@ -3,7 +3,6 @@ class Solution:
         res = strs[0]
 
         for i in strs:
-            # n = len(strs[i])
             j = 0
             while j < len(i) and j < len(res):
                 if  res[j] != i[j]:
