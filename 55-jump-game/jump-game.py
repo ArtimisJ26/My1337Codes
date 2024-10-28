@@ -1,18 +1,9 @@
 class Solution:
     def canJump(self, nums: List[int]) -> bool:   
-        dp = [False] * len(nums)
-        end = len(nums) - 1
-        i = end
-                
-        while i >= 0:
-            if i == end:
-                dp[i] = True
-            elif i + nums[i] >= end:
-                dp[i] = True
-            else:
-                for jump in range(1, nums[i]+1):
-                    if dp[i+jump]:
-                        dp[i] = True
-            i -= 1
-        print(dp)
-        return dp[0]
+        goal = len(nums) - 1
+
+        for i in range(len(nums)-1, -1, -1):
+            if i + nums[i] >= goal:
+                goal = i
+
+        return True if goal == 0 else False
