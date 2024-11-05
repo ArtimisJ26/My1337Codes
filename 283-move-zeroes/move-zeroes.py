@@ -3,18 +3,22 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        def swap(i):
-            j = i
-            while nums[j] == 0:
-                j += 1
-                if j > len(nums)-1:
-                    return
-            temp = nums[i]
-            nums[i] = nums[j]
-            nums[j] = temp
+        n = len(nums)
+        if n < 2:
+            return nums
 
-        for i, num in enumerate(nums):
-            if num == 0:
-                swap(i)
-
+        l = 0
+        r = 1
+        
+        while r < n:
+            if nums[l] == 0:
+                while nums[r] == 0:
+                    r += 1
+                    if r > n-1:
+                        return nums
+                temp = nums[l]
+                nums[l] = nums[r]
+                nums[r] = temp
+            l += 1
+            r += 1
         return nums
