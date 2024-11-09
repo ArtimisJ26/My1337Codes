@@ -1,25 +1,26 @@
 class Solution:
     def shortestSubstrings(self, arr: List[str]) -> List[str]:
-        def helper(s):
-            substrings = [s[i:j] for i in range(len(s)) for j in range(i+1, len(s)+1)]
-            return sorted(substrings, key=lambda x:(len(x), x))
-        
-        
-        
-        n = len(arr)
-        ans = ["" for _ in range(n)]
-        
-        for i in range(n):
-            all_str = helper(arr[i])
-            for str1 in all_str:
-                unique = True
-                for j in range(n):
-                    if i != j and str1 in arr[j]:
-                        unique = False
-                        break
-                if unique:
-                    ans[i] = str1
+        res = []
+        N = len(arr)
+        for idx, x in enumerate(arr):
+            n = len(x)
+            y = "#".join([arr[i] for i in range(N) if i != idx])
+            tmp = None
+            for t in range(1, n + 1):
+                for l in range(0, n - t + 1):
+                    c = x[l:l+t]
+                    if c not in y:
+                        if tmp is None:
+                            tmp = c
+                        else:
+                            tmp = min(tmp, c)
+                if tmp is not None:
+                    res.append(tmp)
                     break
+            if tmp is None:
+                res.append("")
+        return res
+                        
                     
                     
-        return ans
+                
