@@ -8,11 +8,12 @@ public:
             count[s[r]]++;
             maxFreq = max(maxFreq, count[s[r]]);
 
-            while ((r - l + 1) - maxFreq > k) {
+            if ((r - l + 1) - maxFreq > k) {
                 count[s[l]]--;
                 l++;
+            } else {
+                res = max(res, (r - l + 1));
             }
-            res = max(res, (r - l + 1));
         }
 
         return res;
